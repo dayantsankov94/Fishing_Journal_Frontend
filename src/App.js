@@ -1,25 +1,61 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './components/Home/Home';
+
+import Navbar from './components/Navbar/Navbar';
+import { Route, Routes } from 'react-router-dom'
+import Publications from './components/Publications/Publications';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Logout from './components/Logout/Logout';
+import Footer from './components/Footer/Footer';
+import { AuthProvider } from './context/AuthContext';
+import { PublicationProvider } from './context/PublicationContext';
+import PublicationDetails from './components/PublicationDetails/PublicationDetails';
+import { CommentProvider } from './context/CommentContext';
+import Profile from './components/Profile/Profile';
+import UserPublications from './components/UserPublications/UserPublications';
+import Create from './components/CreatePublication/Create';
+import Shared from './components/SharedPublications/Shared';
+import About from './components/About/About';
+import Edit from './components/EditPublication/Edit';
+import NotFound from './components/NotFound/NotFound';
+import PrivateGuard from './components/common/PrivateGuard';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <AuthProvider>
+                <div className='bg container-fluid'>
+                    <Navbar />
+                    <PublicationProvider>
+                        <CommentProvider>
+                            <main>
+                                <Routes>
+                                    <Route path="/" element={<Home />} />
+                                    <Route path="/about" element={<About />} />
+                                    <Route path="/publications" element={<Publications />} />
+                                    <Route path="/publications/details/:publicationId" element={<PublicationDetails />} />
+                                    <Route path="/login" element={<Login />} />
+                                    <Route path="/register" element={<Register />} />
+                                    <Route element={<PrivateGuard />}>
+                                        <Route path="/profile" element={<Profile />} />
+                                        <Route path="/create" element={<Create />} />
+                                        <Route path="/profile/publications" element={<UserPublications />} />
+                                        <Route path="/profile/shares" element={<Shared />} />
+                                        <Route path="/publications/details/edit/:publicationId" element={<Edit />} />
+                                        <Route path="/publications/details/delete/:publicationId" element={<PublicationDetails />} />
+                                        <Route path="/logout" element={<Logout />} />
+                                    </Route>
+                                    <Route path="*" element={<NotFound />} />
+                                </Routes>
+                                <Footer />
+                            </main>
+                        </CommentProvider>
+                    </PublicationProvider>
+                    
+                </div>
+        </AuthProvider>
+    );
 }
 
 export default App;
