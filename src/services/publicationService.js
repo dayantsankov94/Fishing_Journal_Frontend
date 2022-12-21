@@ -1,5 +1,5 @@
 
-const baseUrl = 'https://my-fishing-journal.herokuapp.com/publications';
+const baseUrl = 'https://wild-rose-hen-gear.cyclic.app/publications';
 
 export const getAll = async () => {
     const response = await fetch(baseUrl)
@@ -69,7 +69,6 @@ export const getAllComments = async (publicationId) => {
         const result = await response.json();
         return result;
     } catch (error) {
-        console.log(error,'da vidim');
         
     }
 }

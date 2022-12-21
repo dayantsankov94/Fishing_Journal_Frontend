@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className="mt-4">
-            <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 mt-3 border-top">
+            <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 mt-auto border-top">
                 <p className="col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
                 <Link
                     href="/"
@@ -39,7 +38,6 @@ const Footer = () => {
                     </li>
                 </ul>
             </footer>
-        </div>
 
     );
 }

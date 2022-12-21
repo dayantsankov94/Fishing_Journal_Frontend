@@ -1,17 +1,18 @@
 import { useContext, useState } from "react";
 import { PublicationContext } from "../../context/PublicationContext";
 import Publication from "../Publications/Publication/Publication";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Pagination from "../Pagination/Pagination";
 
-const Shared = () => {
+const ViewPublications = () => {
+
     const [currentPage, setCurrentPage] = useState(1);
     const [publicationsPerPage] = useState(6);
+    const {id} = useParams();
 
-    const { getSharedPublications } = useContext(PublicationContext);
-    const user = JSON.parse(localStorage.getItem('user'))
+    const { getUserPublications } = useContext(PublicationContext);
 
-    const publications = getSharedPublications(user.userWithoutPass._id);
+    const publications = getUserPublications(id);
 
     const indexOfLastPublication = currentPage * publicationsPerPage;
     const indexOfFirstPublication = indexOfLastPublication - publicationsPerPage;
@@ -26,7 +27,7 @@ const Shared = () => {
                     <div className=" sidebar flex-shrink-0 p-3 text-bg-dark">
                         <ul className="nav nav-pills flex-column mb-5">
                             <li className="nav-item">
-                                <Link to="/profile" className="nav-link text-white" aria-current="page">
+                                <Link to={`/profile/${id}`} className="nav-link text-white" aria-current="page">
                                     <svg className="bi pe-none me-2" width={16} height={16}>
                                         <use xlinkHref="#home" />
                                     </svg>
@@ -34,7 +35,7 @@ const Shared = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/profile/publications" className="nav-link  text-white">
+                                <Link to={`/profile/${id}/publications`} className="nav-link  active">
                                     <svg className="bi pe-none me-2" width={16} height={16}>
                                         <use xlinkHref="#speedometer2" />
                                     </svg>
@@ -42,7 +43,7 @@ const Shared = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/profile/shares" className="nav-link active ">
+                                <Link to={`/profile/${id}/shares`} className="nav-link text-white ">
                                     <svg className="bi pe-none me-2" width={16} height={16}>
                                         <use xlinkHref="#table" />
                                     </svg>
@@ -57,7 +58,7 @@ const Shared = () => {
                 </div>
                 <div className="col-xl-9">
                     <div className="wrapper publications">
-                    <h1 className="page-title">Shared</h1>
+                    <h1 className="page-title">Publications</h1>
                         <div className="row">
                             {publications.length > 0
                                 ? currentPublications.map(x => <Publication key={x._id} publication={x} />)
@@ -78,4 +79,5 @@ const Shared = () => {
     )
 }
 
-export default Shared;
+
+export default ViewPublications;

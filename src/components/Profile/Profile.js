@@ -68,7 +68,6 @@ const Profile = () => {
                             {user.publications &&
                                 <div>
                                     <h4>Publications: {user.publications.length}</h4>
-                                    <h4>Shared: {user.shares.length}</h4>
                                 </div>
                             }
                             <div className="add-publication">

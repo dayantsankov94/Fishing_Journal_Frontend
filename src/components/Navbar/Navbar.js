@@ -60,6 +60,11 @@ const Navbar = () => {
                                                 Create Publication
                                             </Link>
                                         </li>
+                                        <li>
+                                            <Link to="/following" className="nav-link px-2 text-white">
+                                                View Following
+                                            </Link>
+                                        </li>
                                     </>
                                 }
 
@@ -71,10 +76,10 @@ const Navbar = () => {
                                 </li>
 
                                 {user.token
-                                    ? <li><Link to='/logout' className="btn text-white">Logout</Link></li>
+                                    ? <li><Link to='/logout' className="nav-link px-2 btn text-white">Logout</Link></li>
 
-                                    : <> <li><Link to='/login' className="btn text-white">Login </Link></li>
-                                        <li><Link to='/register' className="btn btn-warning">Sign-up</Link></li>
+                                    : <> <li><Link to='/login' className="nav-link px-2 btn text-white">Login </Link></li>
+                                        <li><Link to='/register' className="nav-link px-2 btn btn-warning">Sign-up</Link></li>
                                     </>
                                 }
 

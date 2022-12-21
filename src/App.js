@@ -20,40 +20,48 @@ import About from './components/About/About';
 import Edit from './components/EditPublication/Edit';
 import NotFound from './components/NotFound/NotFound';
 import PrivateGuard from './components/common/PrivateGuard';
+import ViewProfile from './components/ViewProfile/ViewProfile';
+import ViewPublications from './components/ViewPublications/ViewPublications';
+import ViewShared from './components/ViewShared/ViewShared';
+import Following from './components/Following/Following';
 
 function App() {
 
     return (
         <AuthProvider>
-                <div className='bg container-fluid'>
-                    <Navbar />
-                    <PublicationProvider>
-                        <CommentProvider>
-                            <main>
-                                <Routes>
-                                    <Route path="/" element={<Home />} />
-                                    <Route path="/about" element={<About />} />
-                                    <Route path="/publications" element={<Publications />} />
-                                    <Route path="/publications/details/:publicationId" element={<PublicationDetails />} />
-                                    <Route path="/login" element={<Login />} />
-                                    <Route path="/register" element={<Register />} />
-                                    <Route element={<PrivateGuard />}>
-                                        <Route path="/profile" element={<Profile />} />
-                                        <Route path="/create" element={<Create />} />
-                                        <Route path="/profile/publications" element={<UserPublications />} />
-                                        <Route path="/profile/shares" element={<Shared />} />
-                                        <Route path="/publications/details/edit/:publicationId" element={<Edit />} />
-                                        <Route path="/publications/details/delete/:publicationId" element={<PublicationDetails />} />
-                                        <Route path="/logout" element={<Logout />} />
-                                    </Route>
-                                    <Route path="*" element={<NotFound />} />
-                                </Routes>
-                                <Footer />
-                            </main>
-                        </CommentProvider>
-                    </PublicationProvider>
-                    
-                </div>
+            <div className='bg container-fluid p-0'>
+                <Navbar />
+                <PublicationProvider>
+                    <CommentProvider>
+                        <main>
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/publications" element={<Publications />} />
+                                <Route path="/publications/details/:publicationId" element={<PublicationDetails />} />
+                                <Route path="/profile/:id/" element={<ViewProfile />} />
+                                <Route path="/profile/:id/publications" element={<ViewPublications />} />
+                                <Route path="/profile/:id/shares" element={<ViewShared />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/register" element={<Register />} />
+                                <Route element={<PrivateGuard />}>
+                                    <Route path="/profile" element={<Profile />} />
+                                    <Route path="/create" element={<Create />} />
+                                    <Route path="/following" element={<Following />} />
+                                    <Route path="/profile/publications" element={<UserPublications />} />
+                                    <Route path="/profile/shares" element={<Shared />} />
+                                    <Route path="/publications/details/edit/:publicationId" element={<Edit />} />
+                                    <Route path="/publications/details/delete/:publicationId" element={<PublicationDetails />} />
+                                    <Route path="/logout" element={<Logout />} />
+                                </Route>
+                                <Route path="*" element={<NotFound />} />
+                            </Routes>
+                        </main>
+                        <Footer />
+                    </CommentProvider>
+                </PublicationProvider>
+
+            </div>
         </AuthProvider>
     );
 }

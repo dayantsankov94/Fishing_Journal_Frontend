@@ -12,6 +12,9 @@
     max-height: 45px;
     margin-top: -13px;
 }
+.no-articles{
+    text-align: center;
+}
 
 .form-signin {
     background-image: url('../images/12.jpg');
@@ -35,12 +38,16 @@
     color: rgb(0, 150, 209);
 }
 
+.comment-section-title{
+    color: #0275d8;
+}
+
 .most-liked {
     text-align: center;
     font-family: sans-serif;
     font-weight: 700;
     margin-bottom: 40px;
-    color: #ffffff8a;
+    color: #0275d8;
     text-decoration: underline;
 }
 
@@ -80,12 +87,6 @@ body {
     padding: 0;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 98%;
-    display: flex;
-}
 
 .top-publication img {
     padding: 5px;
@@ -107,6 +108,8 @@ footer {
     background-size: cover;
     background-attachment: fixed;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .center {
@@ -263,6 +266,13 @@ header {
     text-align: center;
 }
 
+.add-following {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
 .d-flex.flex-column.flex-shrink-0 {
     margin-top: 10px;
 }
@@ -275,7 +285,8 @@ header {
 
     border-radius: 5px;
     border: 3px solid #ffffff8a;
-
+    max-width: 500px;
+    width: 100%;
     box-shadow: 3px 5px 4px 5px #ffffff8a;
 }
 
@@ -283,12 +294,18 @@ header {
     text-align: left;
     border: 3px solid white;
     box-shadow: 3px 5px 4px 5px white;
-    width: 500px;
+    max-width: 500px;
     border-radius: 5px;
     background-color: rgba(250, 235, 215, 0.411);
 }
 
-
+.page-title{
+    text-align: center;
+    font-weight: 700;
+    color: #0275d8;
+    text-decoration: underline;
+    margin-bottom: 50px;
+}
 
 .sidebar {
 
@@ -330,7 +347,7 @@ header {
         top: 60px;
         right: -300px;
         width: 300px;
-        height: 50vh;
+        height: 70vh;
         background: #212529;
         box-shadow: 0 40px 60px rgb(0, 0, 0, 0.1);
         transition: 0.3s ease-in-out;
@@ -419,10 +436,12 @@ main {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 120px;
+    width: 100%;
 }
 
 footer {
     background-color: #212529;
+    padding: 10px;
 }
 
 

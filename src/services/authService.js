@@ -1,6 +1,6 @@
 
 
-const baseUrl = 'https://my-fishing-journal.herokuapp.com/users';
+const baseUrl = 'https://wild-rose-hen-gear.cyclic.app/users';
 
 export const register = async (userData) => {
     try {

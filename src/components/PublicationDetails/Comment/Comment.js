@@ -6,13 +6,11 @@ const Comment = ({ comment, onDeleteComment, user}) => {
             isCommentAuthor = true
         }
     }
-    console.log(isCommentAuthor);
-    console.log(comment);
     
     
     return (
         <div className="comment">
-            <div className="comment-header row">
+            <div className="comment-header">
                 <div className="comment-image">
                     <img src={comment.owner.imageUrl || comment.owner_icon} />
                 </div>

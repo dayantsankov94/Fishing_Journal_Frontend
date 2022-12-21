@@ -19,12 +19,15 @@ const Edit = () => {
         imageUrl: publication.imageUrl,
     });
 
+    const user = JSON.parse(localStorage.getItem('user'))
+
     const onSubmit = (e) => {
         e.preventDefault();
         const publicationData = values;
 
         editPublication(publicationId, publicationData)
-            .then(result => {
+            .then(result => {              
+                result.owner = user.userWithoutPass;
                 edit(publicationId,result);
                 navigate(`/publications/details/${publicationId}`)
             }).catch((err) => {

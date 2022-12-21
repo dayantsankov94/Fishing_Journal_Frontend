@@ -93,24 +93,24 @@ const PublicationDetails = () => {
 
     let isOwner = false;
 
-    
+
     if (user.userWithoutPass && publication.owner) {
-        console.log(publication);
-        
+
         if (publication.owner._id !== undefined) {
             if (user.userWithoutPass._id === publication.owner._id) {
                 isOwner = true;
             }
-        }else {
+        } else {
             if (user.userWithoutPass._id === publication.owner) {
                 isOwner = true;
             }
         }
     }
 
- 
-    
-    
+
+
+
+
 
 
     return (
@@ -140,30 +140,35 @@ const PublicationDetails = () => {
                             <h4>Method: {publication.catchingMethod}</h4>
                             <h4>Likes: {(publication.likes).length}</h4>
                             <h4>Shares: {(publication.shares).length}</h4>
+                            {isOwner 
+                            ?<Link to={`/profile`} className='btn btn-primary'>View Profile</Link>
+                            :<Link to={`/profile/${publication.owner._id}`} className='btn btn-primary'>View Profile</Link>
+                            }
+                            
                         </div>
                     }
                 </div>
                 <div className="comment-box">
                     <div className="row">
                         <div className="col-md-6">
-                            <h3>Comment's Section:</h3>
+                            <h3 className='comment-section-title'>Comment's Section:</h3>
                         </div>
                         <div className="col-lg-6">
-                            {user.token &&
-                                <div className="options">
+                                {user.token &&
+                                    <div className="options">
 
-                                    {(publication && publication.likes && publication.likes.includes(user.userWithoutPass._id))
-                                        ? <button className="btn btn-primary disabled" > Liked </button>
-                                        : <button className="btn btn-primary" onClick={onLikeHandler}> Like </button>
-                                    }
+                                        {(publication && publication.likes && publication.likes.includes(user.userWithoutPass._id))
+                                            ? <button className="btn btn-primary disabled" > Liked </button>
+                                            : <button className="btn btn-primary" onClick={onLikeHandler}> Like </button>
+                                        }
 
-                                    {publication && publication.shares && publication.shares.includes(user.userWithoutPass._id)
-                                        ? <button className="btn btn-warning disabled" > Shared </button>
-                                        : <button className="btn btn-warning" onClick={onShareHandler}> Share </button>
-                                    }
-                                </div>
-                            }
-
+                                        {publication && publication.shares && publication.shares.includes(user.userWithoutPass._id)
+                                            ? <button className="btn btn-success disabled" > Shared </button>
+                                            : <button className="btn btn-success" onClick={onShareHandler}> Share </button>
+                                        }
+                                    </div>
+                                }
+                                
                         </div>
                     </div>
                     <div className="comments">

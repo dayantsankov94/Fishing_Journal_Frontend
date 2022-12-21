@@ -1,25 +1,38 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../../services/authService";
 import { getAll } from "../../services/publicationService";
 import Pagination from "../Pagination/Pagination";
-import Publication from "./Publication/Publication";
+import Publication from "../Publications/Publication/Publication";
 
 
 
-const Publications = () => {
+const Following = () => {
     const [publications, setPublications] = useState([]);
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1);
     const [publicationsPerPage] = useState(6);
     const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem('user'))
+    let following =[];
+   
 
+    useEffect(() => {
+        getUser(user.userWithoutPass._id)
+            .then(result => {
+            following = result.following;
+            }).catch((err) => {
+                navigate('*');
+            })
+    },[])
 
     useEffect(() => {
         const fetchPublication = async () => {
-            setLoading(true);
+            setLoading(true);        
             try {
-                const response = await getAll()
-                setPublications(response);
+                const response = await getAll();
+                const filtered = response.filter(x => following.includes(x.owner._id))              
+                 setPublications(filtered);
                 setLoading(false);
             } catch (error) {
                 navigate('*');
@@ -41,7 +54,7 @@ const Publications = () => {
 
         return (
             <div className="container wrapper publications">
-                <h1 className="page-title">Catalog</h1>
+                <h1 className="page-title">Following</h1>
                 <div className="row">
                     {publications.length > 0
                         ? currentPublications.map(x => <Publication key={x._id} publication={x} />)
@@ -58,4 +71,4 @@ const Publications = () => {
     }
 }
 
-export default Publications;
+export default Following;

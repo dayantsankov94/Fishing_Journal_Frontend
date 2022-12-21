@@ -43,7 +43,7 @@ const Register = () => {
                 ...state,
                 [e.target.name]: values[e.target.name] !== values.password,
             }));
-        console.log(errors);  
+ 
     }
 
     const changeHandler = (e) => {

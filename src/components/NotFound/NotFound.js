@@ -1,5 +1,4 @@
 const NotFound = ({ error }) => {
-    console.log(error);
     
     return (
         <main >

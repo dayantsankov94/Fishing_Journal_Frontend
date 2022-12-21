@@ -58,6 +58,7 @@ const UserPublications = () => {
                 </div>
                 <div className="col-xl-9">
                     <div className="wrapper publications">
+                    <h1 className="page-title">Publications</h1>
                         <div className="row">
                             {publications.length > 0
                                 ? currentPublications.map(x => <Publication key={x._id} publication={x} />)
